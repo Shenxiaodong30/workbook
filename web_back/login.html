@@ -9,6 +9,7 @@
     <link rel="stylesheet" type="text/css" href="css/reset.css">
     <link rel="stylesheet" type="text/css" href="css/iconfont.css">
     <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="stylesheet" href="./js/bootstrap/css/bootstrap.min.css">
 </head>
 
 <body>
@@ -29,31 +30,59 @@
                 <button id="btnLogin" type="button" class="input_sub">登录</button>
             </form>
         </div>
+    </div>
 
-    </div> 
+    <!-- bootstrap内容 -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">错误提示</h4>
+                </div>
+                <div class="modal-body">
+                    <p id="resOlt"></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal"
+                        style="font-size: 13px;">确定</button>
+                    <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
     <script src="./js/lib/jquery-1.12.4.min.js"></script>
+    <script src="./js/bootstrap/js/bootstrap.min.js"></script>
     <script>
-    // 1.给按钮添加点击事件
-    // 收集用户信息，进性简单的判断
-    // 发ajax请求
-    // 根据结果给反馈
-    $('#btnLogin').click(function() {
-        var userName = $('#userName').val();
-        var password = $('#password').val();
-        // console.log(userName,password);
-        if(userName===""||password==="") {
-            alert('喂喂喂，嘛呢！')
-        }else {
-            $.post('http://localhost:8000/admin/login',{user_name:userName,password:password},function(res){
-                console.log(res);
-                if(res.code === 200) {
-                    alert('登录成功');
-                }else {
-                     alert(res.msg);
-                }
-            });
-        }
-    });
+        // 1.给按钮添加点击事件
+        // 收集用户信息，进性简单的判断
+        // 发ajax请求
+        // 根据结果给反馈
+        $('#btnLogin').click(function () {
+            var userName = $('#userName').val();
+            var password = $('#password').val();
+            // console.log(userName,password);
+            if (userName === "" || password === "") {
+                $('#resOlt').html('用户名和密码不能为空');
+                $('#myModal').modal('show');
+                // alert('喂喂喂，嘛呢！')
+            } else {
+                $.post('http://localhost:8000/admin/login', {
+                    user_name: userName,
+                    password: password
+                }, function (res) {
+                    console.log(res);
+                    if (res.code === 200) {
+                    window.location.href = '/web_back/index.html';
+                    } else {
+                        $('#resOlt').html(res.msg);
+                        $('#myModal').modal('show');
+                    }
+                });
+            }
+        });
     </script>
 </body>
 
