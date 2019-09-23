@@ -23,14 +23,38 @@
             <form class="login_form">
                 <i class="iconfont icon-user"></i>
                 <i class="iconfont icon-key"></i>
-                <input type="text" class="input_txt" placeholder="邮箱/手机号">
-                <input type="password" class="input_pass" placeholder="密码">
-                <input type="submit" class="input_sub" value="登 录">
+                <input id="userName" type="text" class="input_txt" placeholder="邮箱/手机号">
+                <input id="password" type="password" class="input_pass" placeholder="密码">
+                <!-- <input type="submit" class="input_sub" value="登 录"> -->
+                <button id="btnLogin" type="button" class="input_sub">登录</button>
             </form>
         </div>
 
     </div> 
-
+    <script src="./js/lib/jquery-1.12.4.min.js"></script>
+    <script>
+    // 1.给按钮添加点击事件
+    // 收集用户信息，进性简单的判断
+    // 发ajax请求
+    // 根据结果给反馈
+    $('#btnLogin').click(function() {
+        var userName = $('#userName').val();
+        var password = $('#password').val();
+        // console.log(userName,password);
+        if(userName===""||password==="") {
+            alert('喂喂喂，嘛呢！')
+        }else {
+            $.post('http://localhost:8000/admin/login',{user_name:userName,password:password},function(res){
+                console.log(res);
+                if(res.code === 200) {
+                    alert('登录成功');
+                }else {
+                     alert(res.msg);
+                }
+            });
+        }
+    });
+    </script>
 </body>
 
 </html>
