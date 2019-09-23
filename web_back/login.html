@@ -55,6 +55,7 @@
 
     <script src="./js/lib/jquery-1.12.4.min.js"></script>
     <script src="./js/bootstrap/js/bootstrap.min.js"></script>
+    <script src="./js/Utils/user.js"></script>
     <script>
         // 1.给按钮添加点击事件
         // 收集用户信息，进性简单的判断
@@ -67,22 +68,34 @@
             if (userName === "" || password === "") {
                 $('#resOlt').html('用户名和密码不能为空');
                 $('#myModal').modal('show');
+                // user.login()
                 // alert('喂喂喂，嘛呢！')
             } else {
-                $.post('http://localhost:8000/admin/login', {
-                    user_name: userName,
-                    password: password
-                }, function (res) {
+                user.login(userName, password, function (res) {
                     console.log(res);
                     if (res.code === 200) {
-                    window.location.href = '/web_back/index.html';
+                        window.location.href = '/web_back/index.html';
                     } else {
                         $('#resOlt').html(res.msg);
                         $('#myModal').modal('show');
                     }
                 });
+                // console.log(userName,password);
             }
+        // $.post('http://localhost:8000/admin/login', {
+        //     user_name: userName,
+        //     password: password
+        // }, function (res) {
+        //     console.log(res);
+        //     if (res.code === 200) {
+        //     window.location.href = '/web_back/index.html';
+        //     } else {
+        //         $('#resOlt').html(res.msg);
+        //         $('#myModal').modal('show');
+        //     }
+        // });
         });
+     
     </script>
 </body>
 
