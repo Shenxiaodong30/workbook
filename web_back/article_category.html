@@ -5,12 +5,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>文章列表</title>
+    <title>文章类别管理 </title>
     <link rel="stylesheet" href="js/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/iconfont.css">
     <link rel="stylesheet" href="css/main.css">
-    <script src="js/jquery-1.12.4.min.js"></script>
+    <script src="js/lib/jquery-1.12.4.min.js"></script>
     <script src="js/bootstrap/js/bootstrap.min.js"></script>
 </head>
 
@@ -107,6 +107,9 @@
         </div>
       </div>
 
+      <script src="./js/Utils/config.js"></script>
+      <script src="./js/Utils/category.js"></script>
+
       <script>
           $('#addModal').modal({
             show:false,
@@ -129,6 +132,14 @@
                 $('#addModal').modal('show');
               }
           })      
+      </script>
+      <script>
+      $(function() {
+          category.show(function(res) {
+            console.log(res)
+          });
+      })
+      
       </script>
 
 </body>
