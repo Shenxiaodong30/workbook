@@ -6,22 +6,19 @@ var user = {
      * @param {*} callBack  回调函数
      */
     login: function (userName, password, callBack) {
-        $.post('http://localhost:8000/admin/login', {
-            user_name: userName,
-            password: password
-        }, function (res) {
+        $.post(urlIst.user_login, {user_name: userName,password: password}, function (res) {
             // res 本次请求服务区返回的内容
             callBack(res);
         });
     },
 
     logout: function (callBack) {
-        $.post('http://localhost:8000/admin/logout', function (res) {
+        $.post(urlIst.user_logout, function (res) {
             callBack(res); 
         });
     },
     getInfo : function(callBack) {
-        $.get('http://localhost:8000/admin/getuser',function(res) {
+        $.get(urlIst.user_getInfo,function(res) {
             callBack(res);
         });
     }
