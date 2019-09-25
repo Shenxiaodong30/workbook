@@ -14,5 +14,10 @@ var category = {
         $.post(urlIst.category_add,{name:name,slug,slug},function(res) {
             callBack(res);
         });
+    },
+    del : function(id,callBack) {
+        $.post(urlIst.category_del,{id: id},function(res) {
+            callBack(res);
+        })
     }
 };
