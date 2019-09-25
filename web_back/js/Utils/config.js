@@ -5,6 +5,6 @@ var urlIst = {
     user_logout :  Base_url + '/admin/logout',
     user_getInfo : Base_url + '/admin/getuser',
 
-
-    category_show : Base_url + '/admin/category_search'
+    category_show : Base_url + '/admin/category_search',
+    category_add : Base_url + '/admin/category_add'
 };
