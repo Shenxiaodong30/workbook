@@ -39,12 +39,12 @@
                 <div class="form-group">
                     <label for="inputEmail3" class="col-sm-2 control-label">文章类别：</label>
                     <div class="col-sm-4">
-                        <select class="form-control">
-                            <option>1</option>
+                        <select class="form-control" id="input-control">
+                            <!-- <option>1</option>
                             <option>2</option>
                             <option>3</option>
                             <option>4</option>
-                            <option>5</option>
+                            <option>5</option> -->
                         </select>
                     </div>
                 </div>
@@ -82,12 +82,21 @@
     <script src="./js/Utils/category.js"></script>
     <script src="./js/Utils/config.js"></script>
     <script src="./js/lib/template-web.js"></script>
+    <script id="tmp" type="text/html">
+        {{each data item}}
+        <option value={{item.id}}>{{item.name}}</option>
+        {{/each}}
+    </script>
+    
     <script>
         $(function() {
             category.show(function(res) {
                 console.log(res);
                 if(res.code === 200) {
                     // 用模板引擎  把 数据+模板   渲染成html
+                    var htmlStr = template("tmp",res)
+                    console.log(htmlStr);
+                    $('#input-control').html(htmlStr);
                 }
             });
         });
