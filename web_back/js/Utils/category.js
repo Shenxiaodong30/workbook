@@ -1,4 +1,5 @@
 var category = {
+    // 显示内容
     show : function(callBack) {
         $.get(urlIst.category_show,function(res) {
             callBack(res);
@@ -19,5 +20,10 @@ var category = {
         $.post(urlIst.category_del,{id: id},function(res) {
             callBack(res);
         })
+    },
+    change : function(id,name,slug,callBack) {
+        $.post(urlIst.category_change,{id: id,name:name,slug:slug},function(res) {
+            callBack(res);
+        })
     }
-};
+}

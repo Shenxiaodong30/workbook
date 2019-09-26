@@ -7,5 +7,7 @@ var urlIst = {
 
     category_show : Base_url + '/admin/category_search',
     category_add : Base_url + '/admin/category_add',
-    category_del : Base_url + '/admin/category_delete'
+    category_del : Base_url + '/admin/category_delete',
+    category_change : Base_url + '/admin/category_edit'
+
 };
