@@ -42,8 +42,8 @@
                 <tfoot>
                     <tr>
                         <td colspan="3" class="text-center">
-                            <a href="#" class="btn btn-success" id="btnShowAddModal" data-toggle="modal" data-target="#addModal"
-                                id="newModal">新增分类</a>
+                            <a href="#" class="btn btn-success" id="btnShowAddModal" data-toggle="modal"
+                                data-target="#addModal" id="newModal">新增分类</a>
                         </td>
                     </tr>
                 </tfoot>
@@ -89,18 +89,18 @@
 
     <!-- 模板引擎操作   渲染html页面 -->
     <script id="tmp" type="text/html">
-        {{each data item}}
-        <tr>
-            <td>{{item.name}}</td>
-            <td>{{item.slug}}</td>
-            <td class="text-center">
-                <!-- editTr 后实参为obj对象 -->
-                <a href='javascript:editTr({"id":"{{item.id}}","name":"{{item.name}}","slug":"{{item.slug}}"});'
-                    class="btn btn-info btn-xs">编辑</a>
-                <a href='javascript:deleteTr({{item.id}});' class="btn btn-danger btn-xs">删除</a>
-            </td>
-        </tr>
-        {{/each}}
+    {{each data item}}
+    <tr>
+        <td>{{item.name}}</td>
+        <td>{{item.slug}}</td>
+        <td class="text-center">
+            <!-- editTr 后实参为obj对象 -->
+            <a href='javascript:editTr({"id":"{{item.id}}","name":"{{item.name}}","slug":"{{item.slug}}"});'
+                class="btn btn-info btn-xs">编辑</a>
+            <a href='javascript:deleteTr({{item.id}});' class="btn btn-danger btn-xs">删除</a>
+        </td>
+    </tr>
+    {{/each}}
     </script>
 
     <script>
@@ -130,19 +130,19 @@
     <script>
         var status = '';
 
-        function deleteTr(id) {
-            // 使用模态框
-            if (window.confirm("你确定要删除吗？")) {
-                // 调用对象方法  传入参数和回调函数
-                category.del(id, function (res) {
-                    console.log(res);
-                    if (res.code == 200) {
-                        // alert(res.msg)
-                        aoQuery();
-                    }
-                });
-            }
-        }
+        // function deleteTr(id) {
+        //     // 使用模态框
+        //     if (window.confirm("你确定要删除吗？")) {
+        //         // 调用对象方法  传入参数和回调函数
+        //         category.del(id, function (res) {
+        //             console.log(res);
+        //             if (res.code == 200) {
+        //                 // alert(res.msg)
+        //                 aoQuery();
+        //             }
+        //         });
+        //     }
+        // }
         // 查询显示
         function aoQuery() {
             category.show(function (res) {
@@ -155,7 +155,7 @@
                 $("#tabContent").html(htmlStr);
             });
         };
-        $(function() {
+        $(function () {
             aoQuery();
         });
 
@@ -167,16 +167,16 @@
             $('#model_add').text("确认修改");
             status = '编辑';
             // 给文本框赋值
-             $("#fName").val(obj.name);
-             $("#fSlug").val(obj.slug);
-             $('#btnHidden').val(obj.id);//隐藏域
+            $("#fName").val(obj.name);
+            $("#fSlug").val(obj.slug);
+            $('#btnHidden').val(obj.id);//隐藏域
             console.log(obj);
             $('#div').hide();
 
             // console.log(obj)   
         }
         // 新增 分类
-        $('#btnShowAddModal').click(function() {
+        $('#btnShowAddModal').click(function () {
             $('#fName').val('');
             $('#fSlug').val('');
             status = '新增';
@@ -184,29 +184,29 @@
             $('#model_add').text("新增");
             $('#div').hide();
         });
-       
-   
 
 
-      
-   //新增与编辑共用一个模态框
-      
-           
-            $('#model_add').click(function () {
-                // 获取用户的数据 进行简单的判断
-                var name = $('#fName').val();
-                var slug = $('#fSlug').val();
-                console.log(name, slug)
-                
-                if (name === "" || slug === '') {
-                    $('#div').show().text('分类名称或者分类别名不能为空');
-                } else {
-                    // 新增
-                    if(status === '新增') {
-                        category.add(name, slug, function (res) {
+
+
+
+        //新增与编辑共用一个模态框
+
+
+        $('#model_add').click(function () {
+            // 获取用户的数据 进行简单的判断
+            var name = $('#fName').val();
+            var slug = $('#fSlug').val();
+            console.log(name, slug)
+
+            if (name === "" || slug === '') {
+                $('#div').show().text('分类名称或者分类别名不能为空');
+            } else {
+                // 新增
+                if (status === '新增') {
+                    category.add(name, slug, function (res) {
                         console.log(res);
                         if (res.code == 200) {
-                        
+
                             $('#addModal').modal('hide');
                             $('#div').hide();
                             aoQuery();
@@ -215,29 +215,29 @@
                         }
 
                     });
-                    }else {
-                        // 编辑
-             
-                        var id = $('#btnHidden').val();
-                        category.change(id,name,slug,function(res) {
-                            if(res.code === 200) {
-                            $('#div').hide();                         
+                } else {
+                    // 编辑
+
+                    var id = $('#btnHidden').val();
+                    category.change(id, name, slug, function (res) {
+                        if (res.code === 200) {
+                            $('#div').hide();
                             $('#addModal').modal('hide');
                             aoQuery();
-                            } else {
-                                $('#div').show().text(res.msg);
-                            }
-                        })
-                    }
-               
+                        } else {
+                            $('#div').show().text(res.msg);
+                        }
+                    })
                 }
 
-            });
-            $('#model_shutoff').click(function () {
-                $('#addModal').modal('hide');
-            });
-          
-  
+            }
+
+        });
+        $('#model_shutoff').click(function () {
+            $('#addModal').modal('hide');
+        });
+
+
     </script>
 
 </body>

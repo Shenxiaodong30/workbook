@@ -83,23 +83,23 @@
     <script src="./js/Utils/config.js"></script>
     <script src="./js/lib/template-web.js"></script>
     <script id="tmp" type="text/html">
-        {{each data item}}
-        <option value={{item.id}}>{{item.name}}</option>
-        {{/each}}
+    {{each data item}}
+    <option value={{item.id}}>{{item.name}}</option>
+    {{/each}}
     </script>
-    
+
     <script>
-        $(function() {
-            category.show(function(res) {
-                console.log(res);
-                if(res.code === 200) {
-                    // 用模板引擎  把 数据+模板   渲染成html
-                    var htmlStr = template("tmp",res)
-                    console.log(htmlStr);
-                    $('#input-control').html(htmlStr);
-                }
-            });
-        });
+        // $(function() {
+        //     category.show(function(res) {
+        //         console.log(res);
+        //         if(res.code === 200) {
+        //             // 用模板引擎  把 数据+模板   渲染成html
+        //             var htmlStr = template("tmp",res)
+        //             console.log(htmlStr);
+        //             $('#input-control').html(htmlStr);
+        //         }
+        //     });
+        // });
     </script>
 
 </body>
