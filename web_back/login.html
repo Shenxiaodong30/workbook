@@ -62,27 +62,7 @@
         // 收集用户信息，进性简单的判断
         // 发ajax请求
         // 根据结果给反馈
-        $('#btnLogin').click(function () {
-            var userName = $('#userName').val();
-            var password = $('#password').val();
-            // console.log(userName,password);
-            if (userName === "" || password === "") {
-                $('#resOlt').html('用户名和密码不能为空');
-                $('#myModal').modal('show');
-                // user.login()
-                // alert('喂喂喂，嘛呢！')
-            } else {
-                user.login(userName, password, function (res) {
-                    console.log(res);
-                    if (res.code === 200) {
-                        window.location.href = '/web_back/index.html';
-                    } else {
-                        $('#resOlt').html(res.msg);
-                        $('#myModal').modal('show');
-                    }
-                });
-                // console.log(userName,password);
-            }
+
         // $.post('http://localhost:8000/admin/login', {
         //     user_name: userName,
         //     password: password
